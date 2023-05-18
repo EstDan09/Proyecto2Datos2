@@ -7,7 +7,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-#define N 4
+#define N 13
 
 
 class Backtracking {

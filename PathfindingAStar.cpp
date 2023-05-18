@@ -37,7 +37,7 @@ bool PathfindingAStar::isValid(int row, int col) {
            && (col < N);
 }
 
-bool PathfindingAStar::isUnBlocked(int (*grid)[4], int row, int col) {
+bool PathfindingAStar::isUnBlocked(int (*grid)[13], int row, int col) {
     // Returns true if the cell is not blocked else false
     if (grid[row][col] == 1)
         return (true);
@@ -59,7 +59,7 @@ double PathfindingAStar::calculateHValue(int row, int col, Pair dest) {
             + (col - dest.second) * (col - dest.second)));
 }
 
-void PathfindingAStar::tracePath(cell (*cellDetails)[4], Pair dest) {
+void PathfindingAStar::tracePath(cell (*cellDetails)[13], Pair dest) {
     int row = dest.first;
     int col = dest.second;
 
@@ -75,10 +75,19 @@ void PathfindingAStar::tracePath(cell (*cellDetails)[4], Pair dest) {
     }
 
     Path.emplace(row, col);
-    int sol[N][N] = { {0, 0, 0, 0},
-                      {0, 0, 0, 0},
-                      {0, 0, 0, 0},
-                      {0, 0, 0, 0} };
+    int sol[N][N] = { {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0} };
     while (!Path.empty()) {
         pair<int, int> p = Path.top();
         Path.pop();
@@ -97,7 +106,7 @@ void PathfindingAStar::tracePath(cell (*cellDetails)[4], Pair dest) {
 
 }
 
-void PathfindingAStar::aStarSearch(int (*grid)[4], Pair src, Pair dest) {
+void PathfindingAStar::aStarSearch(int (*grid)[13], Pair src, Pair dest) {
 
 
 

@@ -20,16 +20,28 @@ void Backtracking::printSolution(int (*sol)[N]) {
 
 bool Backtracking::isSafe(int (*maze)[N], int x, int y) {
     if( x >=0 and x < N and y >= 0 and y < N and maze[x][y] == 1){
+        cout << x << ","<< y << ": safe" << endl;
         return true;
     }
+    cout << x << ","<< y << ": unsafe" << endl;
+
     return false;
 }
 
 bool Backtracking::solveMaze(int (*maze)[N], int xS, int yS, int xE, int yE) {
-    int sol[N][N] = { {0, 0, 0, 0},
-                      {0, 0, 0, 0},
-                      {0, 0, 0, 0},
-                      {0, 0, 0, 0} };
+    int sol[N][N] = { {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0},
+                      {0, 0, 0, 0,0,0,0,0,0,0,0,0,0}};
 
     if (!solveMazeUtil(maze, xS, yS, sol, xE, yE)){
         cout << "Solution doesnt exist";
@@ -42,39 +54,40 @@ bool Backtracking::solveMaze(int (*maze)[N], int xS, int yS, int xE, int yE) {
 bool Backtracking::solveMazeUtil(int (*maze)[N], int x, int y, int (*sol)[N], int xE, int yE) {
     if (x == xE and y == yE and maze[x][y] == 1) {
         sol[x][y] = 1;
-        cout <<"un"<<endl;
+        //cout <<"un"<<endl;
         return true;
     }
 
     if (isSafe(maze, x, y)) {
         if (sol[x][y] == 1) {
-            cout << "in" << endl;
+            //cout << "in" << endl;
             return false;
         }
 
         sol[x][y] = 1;
 
         if(solveMazeUtil(maze, x + 1, y, sol, xE, yE)){
-            cout << "a" << endl;
+            //cout << "a" << endl;
             return true;
         }
 
         if(solveMazeUtil(maze, x - 1, y, sol, xE, yE)){
-            cout << "b" << endl;
+            //cout << "b" << endl;
             return true;
         }
 
         if(solveMazeUtil(maze, x, y + 1, sol, xE, yE)){
-            cout << "c" << endl;
+            //cout << "c" << endl;
             return true;
         }
 
         if(solveMazeUtil(maze, x, y - 1, sol, xE, yE)){
-            cout << "d" << endl;
+            //cout << "d" << endl;
             return true;
         }
 
         sol[x][y] = 0;
+        //cout << "error" << endl;
         return false;
     }
     return false;
